@@ -17,6 +17,7 @@ You can use it to pack and unpack binary data in pure lua. The idea is very simi
 "f" a float (4 bytes).
 "d" a double (8 bytes).
 "s" a zero-terminated string.
+"cn" a sequence of exactly n chars corresponding to a single Lua string.
 ```
 ### how to use it?
 ```lua
