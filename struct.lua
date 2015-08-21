@@ -14,10 +14,6 @@ function struct.pack(format, ...)
       local n = opt:find('[hH]') and 2 or opt:find('[iI]') and 4 or opt:find('[lL]') and 8 or 1
       local val = tonumber(table.remove(vars, 1))
 
-      if val < 0 then
-        val = val + 2 ^ (n * 8)
-      end
-
       local bytes = {}
       for j = 1, n do
         table.insert(bytes, string.char(val % (2 ^ 8)))
