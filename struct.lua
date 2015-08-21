@@ -15,7 +15,7 @@ function struct.pack(format, ...)
       local val = tonumber(table.remove(vars, 1))
 
       if val < 0 then
-        val = val + 2 ^ (n * 8 - 1)
+        val = val + 2 ^ (n * 8)
       end
 
       local bytes = {}
@@ -117,8 +117,8 @@ function struct.unpack(format, stream)
         iterator = iterator + 1
       end
 
-      if signed then
-        val = val - 2 ^ (n * 8 - 1)
+      if signed and val >= 2 ^ (n * 8 - 1) then
+        val = val - 2 ^ (n * 8)
       end
 
       table.insert(vars, val)
