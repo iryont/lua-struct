@@ -30,8 +30,8 @@ function struct.pack(format, ...)
       local sign = 0
 
       if val < 0 then
-        sign = 1 
-        val = -val 
+        sign = 1
+        val = -val
       end
 
       local mantissa, exponent = math.frexp(val)
@@ -167,3 +167,5 @@ function struct.unpack(format, stream)
 
   return unpack(vars)
 end
+
+return struct
