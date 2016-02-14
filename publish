@@ -1,6 +1,6 @@
 # version=$(git tag -l | tail -1)
 
-version="1.0.0"
+version="0.9.0"
 rev="1" # rev="1"
 
 name="lua-struct-$version-$rev"
