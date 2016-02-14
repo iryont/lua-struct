@@ -1,6 +1,9 @@
 ### lua-struct
 Implementation of binary packing/unpacking in pure lua
 
+### LuaRocks
+```luarocks install lua-struct```
+
 ### what is it for?
 You can use it to pack and unpack binary data in pure lua. The idea is very similar to PHP unpack and pack functions.
 
