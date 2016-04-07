@@ -30,7 +30,9 @@ function struct.pack(format, ...)
   for i = 1, format:len() do
     local opt = format:sub(i, i)
 
-    if opt == '>' then
+    if opt == '<' then
+      endianness = true
+    elseif opt == '>' then
       endianness = false
     elseif opt:find('[bBhHiIlL]') then
       local n = opt:find('[hH]') and 2 or opt:find('[iI]') and 4 or opt:find('[lL]') and 8 or 1
@@ -118,7 +120,9 @@ function struct.unpack(format, stream)
   for i = 1, format:len() do
     local opt = format:sub(i, i)
 
-    if opt == '>' then
+    if opt == '<' then
+      endianness = true
+    elseif opt == '>' then
       endianness = false
     elseif opt:find('[bBhHiIlL]') then
       local n = opt:find('[hH]') and 2 or opt:find('[iI]') and 4 or opt:find('[lL]') and 8 or 1

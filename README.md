@@ -7,6 +7,9 @@ Implementation of binary packing/unpacking in pure lua
 ### what is it for?
 You can use it to pack and unpack binary data in pure lua. The idea is very similar to PHP unpack and pack functions.
 
+### byte order
+You can use < or > at the beginning of the format string to specify the byte order. Default is little endian (<), but you can change it to big endian (>) as well. It is possible to dynamically change the byte order within the format string, so in general you can save types in different byte orders.
+
 ### available types
 ```
 "b" a signed char.
