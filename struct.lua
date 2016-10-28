@@ -185,7 +185,7 @@ function struct.unpack(format, stream)
       table.insert(vars, str)
     elseif opt == 'c' then
       local n = format:sub(i + 1):match('%d+')
-      table.insert(vars, stream:sub(iterator, iterator + tonumber(n)))
+      table.insert(vars, stream:sub(iterator, iterator + tonumber(n)-1))
       iterator = iterator + tonumber(n)
       i = i + n:len()
     end
