@@ -1,5 +1,5 @@
 --[[
- * Copyright (c) 2015-2018 Iryont <https://github.com/iryont/lua-struct>
+ * Copyright (c) 2015-2017 Iryont <https://github.com/iryont/lua-struct>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -106,6 +106,22 @@ function struct.pack(format, ...)
         table.insert(stream, str:sub(1, length))
       end
       i = i + n:len()
+    -- adds p-strings with length written in short
+	elseif opt == 'p' then
+	  local str = tostring(table.remove(vars, 1))
+	  local length = #str
+	  local bytes = {}
+      for i = 1, 2 do
+        table.insert(bytes, string.char(length % (2 ^ 8)))
+        length = math.floor(length / (2 ^ 8))
+      end
+
+      if not endianness then
+        table.insert(stream, string.reverse(table.concat(bytes)))
+      else
+        table.insert(stream, table.concat(bytes))
+      end
+	  table.insert(stream, str)
     end
   end
 
@@ -184,11 +200,41 @@ function struct.unpack(format, stream)
       iterator = iterator + str:len() + 1
       table.insert(vars, str)
     elseif opt == 'c' then
-      local n = format:sub(i + 1):match('%d+')
+      -- adds ability to just write c* which read rest of the data from stream and puts it as string
+	  local n = 0
+	  if format:sub(i + 1):match('^*') then
+		n = stream:len()
+	  else
+		n = format:sub(i + 1):match('%d+')
+	  end
+	  
       table.insert(vars, stream:sub(iterator, iterator + tonumber(n)-1))
       iterator = iterator + tonumber(n)
-      i = i + n:len()
-    end
+      
+	  if type(n) == "number" then
+		i = i + 1
+	  else
+		i = i + n:len()
+	  end
+    -- adds p-strings with length written in short
+	elseif opt == 'p' then
+		local n = 0
+		for j = 1, 2 do
+			local byte = string.byte(stream:sub(iterator, iterator))
+			
+			if endianness then
+			  n = n + byte * (2 ^ ((j - 1) * 8))
+			else
+			  n = n + byte * (2 ^ ((n - j) * 8))
+			end
+			
+			iterator = iterator + 1
+		end
+		
+		table.insert(vars, stream:sub(iterator, iterator + tonumber(n)-1))
+		iterator = iterator + tonumber(n)
+		i = i + n
+	end
   end
 
   return unpack(vars)
