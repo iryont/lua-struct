@@ -20,6 +20,8 @@
  * THE SOFTWARE.
 ]]
 
+local unpack = table.unpack or unpack
+
 struct = {}
 
 function struct.pack(format, ...)
