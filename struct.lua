@@ -1,5 +1,5 @@
 --[[
- * Copyright (c) 2015-2017 Iryont <https://github.com/iryont/lua-struct>
+ * Copyright (c) 2015-2019 Iryont <https://github.com/iryont/lua-struct>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
