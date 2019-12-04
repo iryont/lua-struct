@@ -20,9 +20,9 @@
  * THE SOFTWARE.
 ]]
 
-local unpack = table.unpack or unpack
+local unpack = table.unpack or _G.unpack
 
-struct = {}
+local struct = {}
 
 function struct.pack(format, ...)
   local stream = {}
@@ -114,9 +114,9 @@ function struct.pack(format, ...)
   return table.concat(stream)
 end
 
-function struct.unpack(format, stream)
+function struct.unpack(format, stream, pos)
   local vars = {}
-  local iterator = 1
+  local iterator = pos or 1
   local endianness = true
 
   for i = 1, format:len() do
@@ -145,7 +145,7 @@ function struct.unpack(format, stream)
         val = val - 2 ^ (n * 8)
       end
 
-      table.insert(vars, val)
+      table.insert(vars, math.floor(val))
     elseif opt:find('[fd]') then
       local n = (opt == 'd') and 8 or 4
       local x = stream:sub(iterator, iterator + n - 1)
