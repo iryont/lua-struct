@@ -27,7 +27,7 @@ You can use < or > at the beginning of the format string to specify the byte ord
 ```
 ### how to use it?
 ```lua
-require "struct"
+local struct = require "struct"
 
 local packed = struct.pack('<LIhBsbfd', 123456789123456789, 123456789, -3200, 255, 'Test message', -1, 1.56789, 1.56789)
 local L, I, h, B, s, b, f, d = struct.unpack('<LIhBsbfd', packed)
