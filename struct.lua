@@ -98,15 +98,15 @@ function struct.pack(format, ...)
       table.insert(stream, string.char(0))
     elseif opt == 'c' then
       local n = format:sub(i + 1):match('%d+')
-      local length = tonumber(n)
-
-      if length > 0 then
-        local str = tostring(table.remove(vars, 1))
-        if length - str:len() > 0 then
-          str = str .. string.rep(' ', length - str:len())
-        end
-        table.insert(stream, str:sub(1, length))
+      local str = tostring(table.remove(vars, 1))
+      local len = tonumber(n)
+      if len <= 0 then
+        len = str:len()
       end
+      if len - str:len() > 0 then
+        str = str .. string.rep(' ', len - str:len())
+      end
+      table.insert(stream, str:sub(1, len))
       i = i + n:len()
     end
   end
