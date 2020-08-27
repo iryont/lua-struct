@@ -23,7 +23,7 @@ You can use < or > at the beginning of the format string to specify the byte ord
 "f" a float (4 bytes).
 "d" a double (8 bytes).
 "s" a zero-terminated string.
-"cn" a sequence of exactly n chars corresponding to a single Lua string (if n <= 0 then the string length is taken).
+"cn" a sequence of exactly n chars corresponding to a single Lua string (if n <= 0 then for packing - the string length is taken, unpacking - the number value of the previous unpacked value which is not returned).
 ```
 ### how to use it?
 ```lua
