@@ -175,7 +175,7 @@ function struct.unpack(format, stream, pos)
     elseif opt == 's' then
       local bytes = {}
       for j = iterator, stream:len() do
-        if stream:sub(j, j) == string.char(0) then
+        if stream:sub(j) == '' then
           break
         end
 
