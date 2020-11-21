@@ -22,7 +22,7 @@ build = {
   type = 'none',
   install = {
     lua = {
-      ['struct'] = 'struct.lua'
+      ['struct'] = 'src/struct.lua'
     }
   }
 }
