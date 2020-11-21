@@ -1,0 +1,18 @@
+language: c
+
+env:
+  - LUA=""
+  - LUA="luajit"
+
+branches:
+  only:
+    - master
+
+install:
+  - sudo apt-get install luajit
+  - sudo apt-get install luarocks
+  - sudo luarocks install luafilesystem
+  - sudo luarocks install busted
+  - sudo luarocks make *.rockspec;
+
+script: "busted spec"
