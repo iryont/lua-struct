@@ -1,6 +1,16 @@
 local struct = require "struct"
 
 describe("struct test", function ()
+
+    it("test ss", function () 
+        local s1 = "test1"
+        local s2 = "test2"
+        local packed = struct.pack("<ss", s1, s2)
+        local uns1, uns2 = struct.unpack("<ss", packed)
+        assert.same(uns1, s1)
+        assert.same(uns2, s2)
+    end)
+    
     it("test s", function () 
         local value = "test"
         local packed = struct.pack("<s", value)
