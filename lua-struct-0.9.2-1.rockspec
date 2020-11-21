@@ -1,9 +1,9 @@
 package = "lua-struct"
-version = "0.9.0-1"
+version = "0.9.2-1"
 
 source = {
   url = "git://github.com/iryont/lua-struct.git",
-  tag = "0.9.0-1",
+  tag = "0.9.2-1",
 }
 
 description = {
