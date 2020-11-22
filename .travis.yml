@@ -1,0 +1,15 @@
+language: c
+
+env:
+  - LUA=""
+
+branches:
+  only:
+    - master
+
+install:
+  - sudo apt-get install luarocks
+  - sudo luarocks install busted
+  - sudo luarocks make *.rockspec;
+
+script: "busted spec"

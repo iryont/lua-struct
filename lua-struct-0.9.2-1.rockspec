@@ -1,8 +1,9 @@
 package = "lua-struct"
-version = "@VERSION@-@REVISION@"
+version = "0.9.2-1"
 
 source = {
-  url = "git://github.com/iryont/lua-struct.git"
+  url = "git://github.com/iryont/lua-struct.git",
+  tag = "0.9.2-1",
 }
 
 description = {
@@ -21,7 +22,7 @@ build = {
   type = 'none',
   install = {
     lua = {
-      ['struct'] = 'struct.lua'
+      ['struct'] = 'src/struct.lua'
     }
   }
 }
